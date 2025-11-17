@@ -8,7 +8,7 @@ language: de
 
 narrator: German Male
 
-version:  0.0.1
+version:  0.0.2
 
 comment:  Kurzvorstellung LiaScript im Vergleich zu Authoring-Tool in klassischen LMS
 
@@ -35,11 +35,21 @@ import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
 @burn: <span class="burning-text">@0</span>
 -->
 
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/LiaPlayground/LiaScript-Offene-OER-im-Browser/refs/heads/main/README.md)
+
 # LiaScript – Offene OER im Browser
 
-> *„LMS verwalten Bildung – LiaScript teilt sie.“*
+<h2>„LMS verwalten Bildung – LiaScript teilt sie.“</h2>
 
-## 🟩 1. Einführung: Warum LMS bei OER an ihre Grenzen stoßen
+> **André Dietrich & Sebastian Zug**
+> 
+> **TU Bergakademie Freiberg**
+
+<h3>
+Workshop OER, Osnabrück 17.11-18.11.2025
+</h3>
+
+## 1. Einführung: Warum LMS bei OER an ihre Grenzen stoßen
 
     --{{0}}--
 Sie kennen das Problem: Sie erstellen einen Kurs in Moodle oder ILIAS – und die Inhalte verschwinden in einer Datenbank. Export? Kompliziert. Teilen mit anderen Hochschulen? Noch komplizierter. Plugin-Update? Ihr Kurs funktioniert plötzlich nicht mehr. Das ist das Gegenteil von Open Educational Resources.
@@ -55,14 +65,14 @@ __Typische Probleme:__
      {{1}}
 > **These:** OER braucht eine eigene Sprache, offen, textbasiert und versionsfähig.
 
-## 🟦 2. LiaScript – Eine neue Denkrichtung
+## 2. LiaScript – Eine neue Denkrichtung
 
     --{{0}}--
 Die Antwort ist: Zurück zu den Grundlagen. LiaScript ist reines Markdown – eine Textdatei, die jeder lesen, bearbeiten und teilen kann. Aber mit Superkräften: Quizze, Animationen, Text-to-Speech, Code-Ausführung, alles direkt im Browser. Kein Server, keine Installation, keine Datenbank. Ihre Inhalte bleiben eine einfache Datei – offen, versionierbar, zukunftssicher.
 
 > **Leitfrage 1 beantwortet:** Wie erfassen Autoren Inhalte? → In jedem Texteditor, als Markdown.
 
-## 🟥 3. Demo: Hello LiaScript 🎬
+## 3. Demo: Hello LiaScript 🎬
 
     --{{0}}--
 Lassen Sie mich zeigen, was möglich ist. Das hier ist eine einfache Markdown-Datei – aber sehen Sie, was passiert: Interaktive Tabellen, die zu Diagrammen werden. Multimedia-Inhalte – Audio, Video, 3D-Modelle. Sogar Code, der zu Musik wird. Und das Beste: Das funktioniert alles offline, im Browser, auf jedem Gerät. Von einem normalen Nokia-Handy bis zum Desktop.
@@ -156,7 +166,7 @@ Ein Kurs – drei Modi: Als Präsentation wie jetzt, als Selbstlernkurs mit Text
 > - [( )] Nicht sicher …
 > - [( )] Nein, ich bleibe lieber bei einem klassischen LMS
 
-## 🟪 4. Der Browser ist das neue Betriebssystem 🌐
+## 4. Der Browser ist das neue Betriebssystem 🌐
 
     --{{0}}--
 Warum brauchen wir dafür keinen Server? Weil moderne Browser heute selbst Server sind. Sie haben lokale Datenbanken, können Peer-to-Peer kommunizieren, Text vorlesen, auf Sensoren zugreifen. LiaScript nutzt diese Web-Standards – keine proprietären Lösungen. Das bedeutet: Ihre Kurse funktionieren heute, morgen und in zehn Jahren. Ohne Systemupdates, ohne Migrations-Projekte.
@@ -173,7 +183,7 @@ Warum brauchen wir dafür keinen Server? Weil moderne Browser heute selbst Serve
 Leitfrage 7 beantwortet: Welche Plugins? Keine. Alle Funktionen sind Web-Standard.
 
 
-## 🟫 5. Kollaboration & KI-Co-Creation 🤝🤖
+## 5. Kollaboration & KI-Co-Creation 🤝🤖
 
     --{{0}}--
 Leitfrage 2: Wie arbeiten Autoren zusammen? Sie haben die Wahl: Für technisch versierte Nutzer gibt es Git mit Versionierung, Merge-Requests und Branches. Aber es geht auch ganz einfach – mit kollaborativen Markdown-Editoren wie dem LiaScript LiveEditor, HedgeDoc oder CodiMD. Echtzeit-Kollaboration wie bei Google Docs, nur für Bildungsinhalte. Und weil es Textdateien sind, können Sie die Datei im Notfall auch einfach per E-Mail hin und her schicken – so simpel kann OER sein.
@@ -201,7 +211,10 @@ Was macht LiaScript besonders?
 - [[X]] Inhalte bleiben als Markdown offen
 - [[ ]] Benötigt proprietäre Plugins
 
-## 🟨 6. Vergleich: LMS vs. LiaScript ⚖️
+      {{3}}
+> Damit eröffnet LiaScript neue Möglichkeiten für kollaborative OER-Erstellung - zwischen Lehrenden und Lehrenden aber auch Lehrenden und Lernenden. [vgl. TUBAF LiaScript-Kurse](https://github.com/TUBAF-IfI-LiaScript)
+
+## 6. Vergleich: LMS vs. LiaScript ⚖️
 
     --{{0}}--
 Hier die Leitfragen auf einen Blick: Erfassung? Markdown statt Formulare. Kollaboration? Git statt geschlossener Systeme. Standards? SCORM, IMS – alles dabei. Export? SCORM, PDF, Standalone – ohne Vendor-Lock. Plugins? Null. Kompatibilität? Markdown ist seit 20 Jahren stabil – Ihre Kurse funktionieren auch 2045 noch.
@@ -218,7 +231,7 @@ Hier die Leitfragen auf einen Blick: Erfassung? Markdown statt Formulare. Kollab
     --{{1}}--
 LiaScript ersetzt kein LMS – es macht Ihre Inhalte frei.
 
-## 🟧 7. Rolle des LMS – Ergänzung statt Konkurrenz 🧩
+## 7. Rolle des LMS – Ergänzung statt Konkurrenz 🧩
 
     --{{0}}--
 Wir sagen nicht: "Weg mit dem LMS!" Ein LMS ist wichtig für Nutzerverwaltung, Tracking und Zertifikate. Aber für die Inhaltserstellung? Da gibt es Besseres. LiaScript erzeugt SCORM-Pakete, die Sie direkt in Ihr LMS hochladen können. Oder Sie teilen den Link – der Kurs läuft dann direkt im Browser.
@@ -232,13 +245,16 @@ Das Beste aus beiden Welten: Die Verwaltung im LMS, die Inhalte offen und frei.
 ![Kombination von LMS und LiaScript](media/combination_2.png)
 
     --{{2}}--
-Und wenn das LMS irgendwann abgeschaltet wird – was leider oft passiert – sind Ihre Kurse nicht verloren. Sie liegen als Markdown-Dateien in Git. Für immer zugänglich.
+Und wenn das LMS irgendwann abgeschaltet wird – was leider oft passiert – sind Ihre Kurse nicht verloren. Sie liegen als Markdown-Dateien nicht zentral an einer Stelle, sondern verteilen sich Dank Git auf den Rechner der Autoren. Für immer zugänglich.
 
       {{2}}
 ![Adresse nicht gefunden](media/adresse-nicht-gefunden.png "Report: E-Learning: Eine Zwischenbilanz Kritischer Rückblick als Basis eines Aufbruchs -- 2009 -> [Download](https://www.pedocs.de/volltexte/2011/3215/pdf/Haug_Wedekind_Adresse_nicht_gefunden_D_A.pdf)")<!-- style="border: 1px solid black" -->
 
+      {{3}}
+In Sachsen wurde LiaScript in OPAL integriert, so dass die Kurse unmittelbar ohne SCORM-Import genutzt werden können.
+https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/28960423936/CourseNode/103166567950189?3
 
-## 🟦 8. OER-Ökosystem & Veröffentlichung 🌍
+## 8. OER-Ökosystem & Veröffentlichung 🌍
 
 
 **Plattformunabhängig**
@@ -276,7 +292,7 @@ Exportformate – Leitfrage 4: SCORM für Ihr LMS, PDF zum Ausdrucken, IMS Conte
     --{{2}}--
 Import? Leitfrage 5: Markdown kann jeder schreiben. Und es gibt Konverter von Word, LaTeX, HTML.
 
-## 🟩 9. Fazit 🌱
+## 9. Fazit 🌱
 
     --{{0}}--
 Fassen wir zusammen: LiaScript ist ein offenes Authoring-Tool, das im Browser läuft. Keine Server, keine Plugins, keine Abhängigkeiten. Ihre Inhalte bleiben offen und versionsfähig. Sie können sie mit der ganzen Welt teilen – oder nur mit Ihren Studierenden. Sie funktionieren heute, morgen und in zehn Jahren.
