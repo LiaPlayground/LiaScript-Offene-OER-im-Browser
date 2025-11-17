@@ -6,6 +6,8 @@ email:    Andre.Dietrich@informatik.tu-freiberg.de;
 
 language: de
 
+edit:     true
+
 narrator: German Male
 
 version:  0.0.2
