@@ -76,9 +76,12 @@ Die Antwort ist: Zurück zu den Grundlagen. LiaScript ist reines Markdown – ei
 
     --{{0}}--
 Lassen Sie mich zeigen, was möglich ist. Das hier ist eine einfache Markdown-Datei – aber sehen Sie, was passiert: Interaktive Tabellen, die zu Diagrammen werden. Multimedia-Inhalte – Audio, Video, 3D-Modelle. Sogar Code, der zu Musik wird. Und das Beste: Das funktioniert alles offline, im Browser, auf jedem Gerät. Von einem normalen Nokia-Handy bis zum Desktop.
+!?[](media/avatar.webm#t=0,29)
+
 
     --{{1}}--
 Das hier ist kein Trick – es ist Markdown mit erweiterten Funktionen. Keine Plugins zum Installieren, keine Admin-Rechte notwendig. Einfach schreiben, speichern, teilen.
+!?[](media/avatar.webm#t=29,41)
 
      {{1-2}}
 > <marquee>... Once you free your mind about a concept of Harmony and of music being "correct" you can do whatever you want ...</marquee>
@@ -87,6 +90,7 @@ Das hier ist kein Trick – es ist Markdown mit erweiterten Funktionen. Keine Pl
 
     --{{2}}--
 Eine einfache Tabelle wird automatisch visualisiert – der Autor entscheidet, wie die Daten dargestellt werden.
+!?[](media/avatar.webm#t=42,49)
 
       {{2}}
 | Tier              | Gewicht in kg | Lebensdauer (Jahre) | Mitogen |
@@ -100,6 +104,7 @@ Eine einfache Tabelle wird automatisch visualisiert – der Autor entscheidet, w
 
     --{{3}}--
 Oder als Heatmap – zehn verschiedene Visualisierungstypen sind integriert. Kein Plugin nötig.
+!?[](media/avatar.webm#t=49,56)
 
       {{3}}
 <!--
@@ -124,24 +129,30 @@ data-show
 
     --{{4}}--
 Multimedia – Audio, Video, 3D-Objekte – alles einbettbar mit einfacher Markdown-Syntax.
+!?[](media/avatar.webm#t=56,64)
 
       {{5}}
 ?[ein Pferd](https://www.w3schools.com/html/horse.mp3 "ein Pferd hören")
 
     --{{6}}--
-Videos funktionieren selbst auf alten Geräten, sogar offline.
+Videos können leicht eingebettet werden und wie man sieht, funktioniert LiaScript auch offline und auf Edge-Devices.
+!?[](media/avatar.webm#t=64,72)
+
 
       {{6}}
 !?[LiaScript auf Nokia](https://www.youtube.com/watch?v=U_UW69w0uHE)
 
     --{{7}}--
 Oder interaktive 3D-Inhalte für Museumssammlungen, wissenschaftliche Modelle.
+!?[](media/avatar.webm#t=72,78)
 
       {{7}}
 ??[Esthers Schriftrolle in einer Hülle](https://sketchfab.com/3d-models/esthers-scroll-in-a-cover-21a13eba33cb4343bab56f0c0f982876 "Historisches Museum der Stadt Krakau")
 
     --{{8}}--
 Und jetzt wird's besonders: Programmieren lernen mit Musik. Der Code wird direkt ausgeführt – im Browser.
+!?[](media/avatar.webm#t=78,87)
+
 
       {{8}}
 ```abc
@@ -155,7 +166,9 @@ K: Emin
 @ABCJS.eval
 
     --{{9}}--
-Ein Kurs – drei Modi: Als Präsentation wie jetzt, als Selbstlernkurs mit Text-to-Speech, oder als interaktives Lehrbuch. Alles aus derselben Datei.
+Ein Kurs – drei Modi: Als Präsentation wie jetzt, als Selbstlernkurs, mit Text-to-Speech, oder als interaktives Lehrbuch. Alles aus derselben Datei.
+!?[](media/avatar.webm#t=87)
+
 
       {{9}}
 > ## Quiz?
