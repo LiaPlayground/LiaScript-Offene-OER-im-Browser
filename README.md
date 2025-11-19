@@ -17,6 +17,8 @@ comment:  Kurzvorstellung LiaScript im Vergleich zu Authoring-Tool in klassische
 mode:     Slides
 
 import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
+          https://raw.githubusercontent.com/liaTemplates/webserial/main/README.md
+          https://raw.githubusercontent.com/liaTemplates/MicroBit-Simulator/main/README.md
 
 @style
 @keyframes burn {
@@ -46,10 +48,6 @@ import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
 > **André Dietrich & Sebastian Zug**
 > 
 > **TU Bergakademie Freiberg**
-
-<h3>
-Workshop OER, Osnabrück 17.11-18.11.2025
-</h3>
 
 ## 1. Einführung: Warum LMS bei OER an ihre Grenzen stoßen
 
@@ -181,6 +179,32 @@ Ein Kurs – drei Modi: Als Präsentation wie jetzt, als Selbstlernkurs, mit Tex
 > - [( )] Nicht sicher …
 > - [( )] Nein, ich bleibe lieber bei einem klassischen LMS
 
+### LiaScript im Überblick
+
+``` ascii
++-------------------------------------+     +-------------------------------------+     +-------------------------------------+
+|            Kollaboration            |     |              Hosting                |     |              Features               |
++-+-----------------------------------+     +-+-----------------------------------+     +-+-----------------------------------+
+  |                                           |                                           |
+  o-- Direkt / Echtzeit                       o-- 📝 Eigener WebSpace:                    o-- #️⃣ Markdown Syntax
+  |                                           |      CodiMD / HedgeDoc                    |
+  o-- Asynchrone / Versionen                  |                                           o-- ✨ Animationen (3 Darstellungsmodi)
+  |                                           o-- 🗂️ Versionsverwaltung:                  |
+  o-- Erweitert / KI                          |      GitHub / GitLab / Codeberg           o-- 🗣️ Text-to-Speech
+  |                                           |                                           |
+  o-- Klassenraum / Lernen                    o-- 📤 File-Sharing:                        o-- 📊 Automatische Visualisierung 
+                                              |      OnionShare / NextCloud               |
++-------------------------------------+       |                                           o-- 🧑‍💻 Live Coding
+|            Klassenräume             |       o-- 🕸️ Peer 2 Peer:                         |
++-+-----------------------------------+       |      IPFS / WebTorrent                    o-- 🖼️ ASCII-Art
+  |                                           |                                           |
+  o-- Browserbasiert                          o-- 🌐 Soziale Netze:                       o-- 🚀 JavaScript (First Class Citizen)
+  |                                                  Data-URIs / Nostr                    |
+  o-- Chats                                                                               o-- 🧩 Erweiterungen mit Macros
+  |                                                                                       |
+  o-- Sync. (Quiz / Umfrage / Code)                                                       o-- ❓ Quizze / 🗳️ Umfragen
+```
+
 ## 4. Der Browser ist das neue Betriebssystem 🌐
 
     --{{0}}--
@@ -193,9 +217,101 @@ Warum brauchen wir dafür keinen Server? Weil moderne Browser heute selbst Serve
 | [Sensor APIs](https://developer.mozilla.org/en-US/docs/Web/API/Sensor)           | Zugriff auf Kamera, GPS, Mikrofon | Experimente, Standort           |
 | [WebAudio / TTS](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) | Text-to-Speech                    | Barrierefreie (narrative) Kurse |
 | [JavaScript](https://de.wikipedia.org/wiki/JavaScript)                           | Interaktive Logik                 | Simulationen, Code-Übungen      |
+| [WebSerial API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API) | Zugriff auf serielle Geräte       | Physik-Experimente, IoT         |
+| WebUsb, WebBluetooth, WebNFC, ...                                                | Zugriff auf noch mehr Hardware    | ...                             |
 
     --{{1}}--
 Leitfrage 7 beantwortet: Welche Plugins? Keine. Alle Funktionen sind Web-Standard.
+
+### Von der Simulation zur Hardware
+
+             --{{0}}--
+Der BBC micro:bit ist ein kostengünstiges, programmierbares Board, entwickelt für Bildungszwecke:
+
+??[Micro:Bit](https://sketchfab.com/3d-models/microbit-b453f11ad77a4545a33b3e0ecfba6fc5)
+
+* __Prozessor:__ 32-bit ARM Cortex-M0 (Nordic nRF51822)
+* __Sensoren:__ Beschleunigungssensor, Kompass (Magnetometer), Temperatur
+* __LED-Matrix:__ 5×5 LEDs
+* __Buttons:__ A und B
+* __Kommunikation:__ Bluetooth Low Energy, I²C, SPI, UART
+* __Stromversorgung:__ USB oder Batteriehalter für 2 × AAA
+
+#### Demo MicroBit (Sim)
+<!--
+persistent: true
+-->
+
+          --{{0}}--
+Nach dem Hochladen des folgenden Codes in den MicroBit-Simulator müssen Sie zunächst auf den Play-Button auf dem Board klicken, dann können Sie die Tasten A und B drücken, um 'A' bzw. 'B' auf der LED-Matrix anzuzeigen.
+
+```python
+from microbit import *
+
+display.scroll("press A or B")
+
+while True:
+    if button_a.was_pressed():
+        display.show('A')
+    if button_b.was_pressed():
+        display.show('B')
+```
+@microbit
+
+#### Demo MicroBit (Real)
+
+            --{{0}}--
+Über die WebSerial-API können Sie den MicroBit auch direkt aus dem Browser steuern. Verbinden Sie den MicroBit über USB mit Ihrem Computer, erlauben Sie dem Browser den Zugriff auf das Gerät, und laden Sie dann den folgenden Code hoch. Der MicroBit zeigt eine scrollende Nachricht, liest die Temperatur und zeigt ein Herz auf der LED-Matrix an.
+
+
+
+``` python
+from microbit import *
+
+# Display a scrolling message
+display.scroll("Hello LiaScript!")
+
+# Read the temperature
+temp = temperature()
+print("Temperature:", temp)
+
+# Display a heart on the LED matrix
+display.show(Image.HEART)
+```
+@WebSerial
+
+<center><div style="resize: both; overflow: auto; min-height: 240px; min-width: 320px; border: 1px solid #ccc; padding: 0; margin-bottom: 10px; display: flex; justify-content: center; align-items: center;"><video autoplay="false" id="videoElement" style="display: none; max-width: 100%; max-height: 100%; object-fit: contain;"></video></div></center>
+
+<script input="submit" default="Open Camera">
+const video = document.querySelector("#videoElement")
+
+if (video.srcObject === null) {
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream
+                video.style.display = "block"
+                send.lia("Close Camera")
+            })
+            .catch(function (error) {
+                console.log("Something went wrong!")
+                send.lia("Camera Problem")
+            });
+
+        send.output("Waiting for Camera")
+        "LIA: wait"
+    } else {
+        "No Camera connected"
+    }
+} else {
+    const tracks = video.srcObject.getTracks()
+    // Stop all tracks
+    tracks.forEach(track => track.stop())
+    video.style.display = "none"
+    video.srcObject = null
+    "Open Camera"
+}
+</script>
 
 
 ## 5. Kollaboration & KI-Co-Creation 🤝🤖
@@ -245,6 +361,41 @@ Hier die Leitfragen auf einen Blick: Erfassung? Markdown statt Formulare. Kollab
 
     --{{1}}--
 LiaScript ersetzt kein LMS – es macht Ihre Inhalte frei.
+
+### Templates vs Plugins
+
+![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnlpdzRkbnJrYXNkN3pibjd2aTBjNzB4MTNiZ24yNm1xOXk1eWU1bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sD3aa6UiynWfFZJX6E/giphy.gif)<!-- style="width: 100%" -->
+
+    {{1}}
+!?[](https://www.youtube.com/watch?v=Sh6ArZD_4Gw)
+
+
+{{2}} https://github.com/topics/liascript-template
+
+### Klassenräume vs Kurse
+
+    {{0-1}}
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjB0NzdjMzV6cnh2dHAwbm4xNXMwZGl1YTQ5bHZ4MmtoaDdncDMxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W1VdPHo8Ft3Es/giphy.gif)<!-- style="width: 100%" -->
+
+
+    {{1-2}}
+!?[LiaScript Klassenräume](https://www.youtube.com/watch?v=Kjk6OblugXI)
+
+     {{2}}
+<section>
+
+Backend für Klassenräume:
+
+- [GunDB](https://gundb.io)
+- [IPFS](https://ipfs.io)
+- [MQTT](https://mqtt.org)
+- [Nostr](https://nostr.com)
+- [P2PT](https://p2pt.io)
+- [PubNub](https://www.pubnub.com)
+- [WebTorrent](https://webtorrent.io)
+- (Edrys)
+
+</section>
 
 ## 7. Rolle des LMS – Ergänzung statt Konkurrenz 🧩
 
@@ -301,6 +452,8 @@ Exportformate – Leitfrage 4: SCORM für Ihr LMS, PDF zum Ausdrucken, IMS Conte
 * IMS Content Package
 * Standalone HTML
 * APK: Android App
+
+https://github.com/liascript/liascript-exporter
 
 </section>
 
