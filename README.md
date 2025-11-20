@@ -397,6 +397,65 @@ Hier die Leitfragen auf einen Blick: Erfassung? Markdown statt Formulare. Kollab
     --{{1}}--
 LiaScript ersetzt kein LMS – es macht Ihre Inhalte frei.
 
+### javaScript
+
+
+
+<script>12*33</script>
+
+
+{{1}}
+Russland startete seine Invasion in der Ukraine vor
+<script format="relativetime" unit="days">
+// Define the start date of the invasion
+const invasionStartDate = new Date('2022-02-24');
+
+// Get the current date
+const currentDate = new Date();
+
+// Calculate the difference in milliseconds
+const differenceInMs = currentDate - invasionStartDate;
+
+// Convert milliseconds to days
+const differenceInDays = differenceInMs / (1000 * 60 * 60 * 24);
+
+// Calculate the number of full days
+const daysSinceInvasion = Math.floor(differenceInDays);
+
+-daysSinceInvasion
+</script>.
+
+
+    {{2}}
+<section>
+
+longitude: <script default="13.33125" input="range" output="longitude">@input</script>
+
+latitude: <script default="50.92558" input="range" output="latitude">@input</script>
+
+<script run-once="true" style="display: block">
+  fetch("https://api.open-meteo.com/v1/forecast?latitude=@input(`latitude`)&longitude=@input(`longitude`)&hourly=temperature_2m")
+    .then(response => response.json())
+    .then(data => {
+      let table = "<!-- data-show data-type='line' data-title='Open-Meteo Weather API' -->\n"
+
+      table += "| Time | Temperature |\n"
+      table += "| ---- | ----------- |\n"
+
+      for (let i=0; i < data.hourly.time.length; i++) {
+        table += "| " + data.hourly.time[i] + " | " + data.hourly.temperature_2m[i] + " |\n"
+      }
+      send.lia("LIASCRIPT: "+table) }
+    )
+    .catch(e => {
+      send.lia("ups, something went wrong")
+    })
+  "waiting for the weather"
+</script>
+
+</section>
+
+
 ### Templates vs Plugins
 
 ![](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnlpdzRkbnJrYXNkN3pibjd2aTBjNzB4MTNiZ24yNm1xOXk1eWU1bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sD3aa6UiynWfFZJX6E/giphy.gif)<!-- style="width: 100%" -->
