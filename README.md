@@ -20,6 +20,8 @@ import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
           https://raw.githubusercontent.com/liaTemplates/webserial/main/README.md
           https://raw.githubusercontent.com/liaTemplates/MicroBit-Simulator/main/README.md
 
+link:     ./style.css
+
 @style
 @keyframes burn {
   0% { text-shadow: 0 0 5px #ff0, 0 0 10px #ff0, 0 0 15px #f00, 0 0 20px #f00, 0 0 25px #f00, 0 0 30px #f00, 0 0 35px #f00;
@@ -34,6 +36,24 @@ import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
   color: #fff;
   animation: burn 1.5s infinite alternate;
 }
+.flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the items to wrap as needed */
+    align-items: stretch;
+    gap: 20px; /* Adds both horizontal and vertical spacing between items */
+}
+
+.flex-child { 
+    flex: 1;
+    margin-right: 20px; /* Adds space between the columns */
+}
+
+@media (max-width: 600px) {
+    .flex-child {
+        flex: 100%; /* Makes the child divs take up the full width on slim devices */
+        margin-right: 0; /* Removes the right margin */
+    }
+}
 @end
 
 @burn: <span class="burning-text">@0</span>
@@ -45,16 +65,53 @@ import:   https://raw.githubusercontent.com/liaTemplates/ABCjs/main/README.md
 
 <h2>„LMS verwalten Bildung – LiaScript teilt sie.“</h2>
 
-> **André Dietrich & Sebastian Zug**
+
+<section class="flex-container">
+
+<div class="flex-child" style="min-width: 250px;">
+
+**André Dietrich & Sebastian Zug**
+
+**TU Bergakademie Freiberg**
+
+> __Workshop der Co-WOERK Community, 20.11.2025__
+
+</div>
+
+<div class="flex-child" style="min-width: 250px;">
+
+![partner_map](https://github.com/LiaPlayground/Tutorial_SLUB_2025/blob/main/pic/LiaScript_Meets_OER.png?raw=true "OER-Logo - Quelle: Jonathasmello - Eigenes Werk, CC BY 3.0, [https://commons.wikimedia.org/w/index.php?curid=18460156](https://commons.wikimedia.org/w/index.php?curid=18460156) erweitert um LiaScript Logo")
+
+</div>
+
+</section>
+
+<!-- class="reference" -->
+> Das Material zu diesem Foliensatz steht unter einer Creative Commons Lizenz. Die Inhalte finden sich auf [GitHub](https://github.com/LiaPlayground/LiaScript-Offene-OER-im-Browser)
+
+## 0. Agenda
+
+> Mit diesem Vortrag wollen wir folgende Leitfragen bezüglich LiaScript adressieren:
 > 
-> **TU Bergakademie Freiberg**
+> 0. __Gestaltungsbandbreite:__ Welche Lehr-Lern-Features kann ich mit LiaScript umsetzen?
+> 1. __Erarbeitung:__ Wie erfassen Autoren ihre Inhalte mit LiaScript ganz praktisch - welche Werkzeuge benötigen Sie dafür?
+> 2. __Kooperation:__ Wie gut können Autoren kollaboarativ/kooperativ an Inhalten arbeiten?
+> 3. __Wiederverwendung:__ Welche Export-Formate unterstützt das System?
+> 4. __Best Practice:__ Welche Muster bei der Nutzung haben sich bewährt?
+> 
+> ... dabei aber auch die Vision von LiaScript als offenes Authoring-Tool im Browser vorstellen.
+
+
+      {{0-1}}
+<!-- class="reference" -->
+> **Hinweis:** Bewegen Sie sich mit der Maus anhand der vorwärtsrück/rückwärts Pfeile (unten links) oder mit den Pfeiltastens auf dem Keyboard durch die Demo.
 
 ## 1. Einführung: Warum LMS bei OER an ihre Grenzen stoßen
 
     --{{0}}--
 Sie kennen das Problem: Sie erstellen einen Kurs in Moodle oder ILIAS – und die Inhalte verschwinden in einer Datenbank. Export? Kompliziert. Teilen mit anderen Hochschulen? Noch komplizierter. Plugin-Update? Ihr Kurs funktioniert plötzlich nicht mehr. Das ist das Gegenteil von Open Educational Resources.
 
-__Typische Probleme:__
+__Was sind typische Probleme bei der Materialerstellung und -nutzung in einem LMS:__
 
 - Inhalte werden in Datenbanken gespeichert → nicht offen
 - Kein einfacher Export oder Wiederverwendung
@@ -68,11 +125,44 @@ __Typische Probleme:__
 ## 2. LiaScript – Eine neue Denkrichtung
 
     --{{0}}--
-Die Antwort ist: Zurück zu den Grundlagen. LiaScript ist reines Markdown – eine Textdatei, die jeder lesen, bearbeiten und teilen kann. Aber mit Superkräften: Quizze, Animationen, Text-to-Speech, Code-Ausführung, alles direkt im Browser. Kein Server, keine Installation, keine Datenbank. Ihre Inhalte bleiben eine einfache Datei – offen, versionierbar, zukunftssicher.
+LiaScript ist reines Markdown – eine Textdatei, die jeder lesen, bearbeiten und teilen kann. Aber mit Superkräften: Quizze, Animationen, Text-to-Speech, Code-Ausführung, alles direkt im Browser. Kein Server, keine Installation, keine Datenbank. Ihre Inhalte bleiben eine einfache Datei und können damit mit unterschiedlichsten Mechanismen geteilt und genutzt werden. Damit eröffnen sich ganz neue Möglichkeiten für die Erstellung und Verbreitung von OER.
 
-> **Leitfrage 1 beantwortet:** Wie erfassen Autoren Inhalte? → In jedem Texteditor, als Markdown.
+``` ascii
++-------------------------------------+     +-------------------------------------+     +-------------------------------------+
+|              Features               |     |              Hosting                |     |            Kollaboration            |
++-+-----------------------------------+     +-+-----------------------------------+     +-+-----------------------------------+
+  |                                           |                                           |
+  o-- #️⃣ Markdown Syntax                      o-- 📝 Eigener WebSpace:                    o-- Direkt / Echtzeit
+  |                                           |      CodiMD / HedgeDoc                    |
+  o-- ✨ Animationen (3 Darstellungsmodi)     |                                           o-- Asynchrone / Versionen
+  |                                           o-- 🗂️ Versionsverwaltung:                  |
+  o-- 🗣️ Text-to-Speech                       |      GitHub / GitLab / Codeberg           o-- Erweitert / KI
+  |                                           |                                           |
+  o-- 📊 Automatische Visualisierung          o-- 📤 File-Sharing:                        o-- Klassenraum / Lernen
+  |                                           |      OnionShare / NextCloud               
+  o-- 🧑‍💻 Live Coding                          |                                         +-------------------------------------+
+  |                                           o-- 🕸️ Peer 2 Peer:                       |            Klassenräume             |
+  o-- 🖼️ ASCII-Art                            |      IPFS / WebTorrent                  +-+-----------------------------------+  
+  |                                           |                                           |
+  o-- 🚀 JavaScript (First Class Citizen)     o-- 🌐 Soziale Netze:                       o-- Browserbasiert
+  |                                           |      Data-URIs / Nostr                    |
+  o-- 🧩 Erweiterungen mit Macros             |                                           o-- Chats
+  |                                           |                                           |
+  o-- ❓ Quizze / 🗳️ Umfragen                 |                                           o-- Sync. (Quiz / Umfrage / Code)
++-------------------------------------+       +-------------------------------------+     
+
+```
+
+> **Leitfrage 1 beantwortet:** Was heißt das für die Bearbeitung der Inhalte? → Autoren können einen einfachen Texteditor nutzen.
+
+<!-- class="reference" -->
+> **Hinweis:** Klicken Sie gern auf den Button mit dem Stift in einem Kästchen rechts oben, um in den Live-Editor für dieses Material zu öffenen.
 
 ## 3. Demo: Hello LiaScript 🎬
+
+      {{0-1}}
+<!-- class="reference" -->
+> **Hinweis:** Aktivieren Sie die Tonausgabe und den Präsentationsmodus, damit sich LiaScript von der _besten Seite_ zeigt. Ein Avatar führt Sie dann durch diesen Abschnitt.
 
     --{{0}}--
 Lassen Sie mich zeigen, was möglich ist. Das hier ist eine einfache Markdown-Datei – aber sehen Sie, was passiert: Interaktive Tabellen, die zu Diagrammen werden. Multimedia-Inhalte – Audio, Video, 3D-Modelle. Sogar Code, der zu Musik wird. Und das Beste: Das funktioniert alles offline, im Browser, auf jedem Gerät. Von einem normalen Nokia-Handy bis zum Desktop.
@@ -179,31 +269,7 @@ Ein Kurs – drei Modi: Als Präsentation wie jetzt, als Selbstlernkurs, mit Tex
 > - [( )] Nicht sicher …
 > - [( )] Nein, ich bleibe lieber bei einem klassischen LMS
 
-### LiaScript im Überblick
 
-``` ascii
-+-------------------------------------+     +-------------------------------------+     +-------------------------------------+
-|            Kollaboration            |     |              Hosting                |     |              Features               |
-+-+-----------------------------------+     +-+-----------------------------------+     +-+-----------------------------------+
-  |                                           |                                           |
-  o-- Direkt / Echtzeit                       o-- 📝 Eigener WebSpace:                    o-- #️⃣ Markdown Syntax
-  |                                           |      CodiMD / HedgeDoc                    |
-  o-- Asynchrone / Versionen                  |                                           o-- ✨ Animationen (3 Darstellungsmodi)
-  |                                           o-- 🗂️ Versionsverwaltung:                  |
-  o-- Erweitert / KI                          |      GitHub / GitLab / Codeberg           o-- 🗣️ Text-to-Speech
-  |                                           |                                           |
-  o-- Klassenraum / Lernen                    o-- 📤 File-Sharing:                        o-- 📊 Automatische Visualisierung 
-                                              |      OnionShare / NextCloud               |
-+-------------------------------------+       |                                           o-- 🧑‍💻 Live Coding
-|            Klassenräume             |       o-- 🕸️ Peer 2 Peer:                         |
-+-+-----------------------------------+       |      IPFS / WebTorrent                    o-- 🖼️ ASCII-Art
-  |                                           |                                           |
-  o-- Browserbasiert                          o-- 🌐 Soziale Netze:                       o-- 🚀 JavaScript (First Class Citizen)
-  |                                                  Data-URIs / Nostr                    |
-  o-- Chats                                                                               o-- 🧩 Erweiterungen mit Macros
-  |                                                                                       |
-  o-- Sync. (Quiz / Umfrage / Code)                                                       o-- ❓ Quizze / 🗳️ Umfragen
-```
 
 ## 4. Der Browser ist das neue Betriebssystem 🌐
 
@@ -221,7 +287,7 @@ Warum brauchen wir dafür keinen Server? Weil moderne Browser heute selbst Serve
 | WebUsb, WebBluetooth, WebNFC, ...                                                | Zugriff auf noch mehr Hardware    | ...                             |
 
     --{{1}}--
-Leitfrage 7 beantwortet: Welche Plugins? Keine. Alle Funktionen sind Web-Standard.
+> **Leitfrage 7 beantwortet:**  beantwortet: Welche Plugins? Keine. Alle Funktionen sind Web-Standard.
 
 ### Von der Simulation zur Hardware
 
@@ -314,38 +380,7 @@ if (video.srcObject === null) {
 </script>
 
 
-## 5. Kollaboration & KI-Co-Creation 🤝🤖
-
-    --{{0}}--
-Leitfrage 2: Wie arbeiten Autoren zusammen? Sie haben die Wahl: Für technisch versierte Nutzer gibt es Git mit Versionierung, Merge-Requests und Branches. Aber es geht auch ganz einfach – mit kollaborativen Markdown-Editoren wie dem LiaScript LiveEditor, HedgeDoc oder CodiMD. Echtzeit-Kollaboration wie bei Google Docs, nur für Bildungsinhalte. Und weil es Textdateien sind, können Sie die Datei im Notfall auch einfach per E-Mail hin und her schicken – so simpel kann OER sein.
-
-      {{0}}
-![Kollaboration im Editor](media/collaboration_1.png)
-
-    --{{1}}--
-Und jetzt wird's spannend: KI-Assistenten können direkt mitschreiben. Quizfragen generieren, Texte übersetzen, interaktive Elemente erstellen. Das ist echte Co-Creation – zwischen Menschen und zwischen Mensch und Maschine. Ohne Plattform-Lock-in.
-
-      {{1}}
-![Kollaboration mit der KI](media/collaboration_2.png)
-
-    --{{2}}--
-Ihre Kurse leben dort, wo Sie wollen: GitHub, GitLab, Nextcloud, Ihr eigener Server – oder einfach auf Ihrer Festplatte. Nicht gefangen in einer proprietären Datenbank.
-
-      {{2}}
-![Kollaboration über Plattformen](media/collaboration_3.png)
-
-    --{{3}}--
-Was macht LiaScript besonders?
-
-      {{3}}
-- [[X]] Läuft im Browser ohne Server
-- [[X]] Inhalte bleiben als Markdown offen
-- [[ ]] Benötigt proprietäre Plugins
-
-      {{3}}
-> Damit eröffnet LiaScript neue Möglichkeiten für kollaborative OER-Erstellung - zwischen Lehrenden und Lehrenden aber auch Lehrenden und Lernenden. [vgl. TUBAF LiaScript-Kurse](https://github.com/TUBAF-IfI-LiaScript)
-
-## 6. Vergleich: LMS vs. LiaScript ⚖️
+## 5. Vergleich: LMS vs. LiaScript ⚖️
 
     --{{0}}--
 Hier die Leitfragen auf einen Blick: Erfassung? Markdown statt Formulare. Kollaboration? Git statt geschlossener Systeme. Standards? SCORM, IMS – alles dabei. Export? SCORM, PDF, Standalone – ohne Vendor-Lock. Plugins? Null. Kompatibilität? Markdown ist seit 20 Jahren stabil – Ihre Kurse funktionieren auch 2045 noch.
@@ -381,99 +416,67 @@ LiaScript ersetzt kein LMS – es macht Ihre Inhalte frei.
     {{1-2}}
 !?[LiaScript Klassenräume](https://www.youtube.com/watch?v=Kjk6OblugXI)
 
-     {{2}}
-<section>
+## 6. Kollaboration & KI-Co-Creation 🤝🤖
 
-Backend für Klassenräume:
+    --{{0}}--
+Leitfrage 2: Wie arbeiten Autoren zusammen? Sie haben die Wahl: Für technisch versierte Nutzer gibt es Git mit Versionierung, Merge-Requests und Branches. Aber es geht auch ganz einfach – mit kollaborativen Markdown-Editoren wie dem LiaScript LiveEditor, HedgeDoc oder CodiMD. Echtzeit-Kollaboration wie bei Google Docs, nur für Bildungsinhalte. Und weil es Textdateien sind, können Sie die Datei im Notfall auch einfach per E-Mail hin und her schicken – so simpel kann OER sein.
 
-- [GunDB](https://gundb.io)
-- [IPFS](https://ipfs.io)
-- [MQTT](https://mqtt.org)
-- [Nostr](https://nostr.com)
-- [P2PT](https://p2pt.io)
-- [PubNub](https://www.pubnub.com)
-- [WebTorrent](https://webtorrent.io)
-- (Edrys)
+      {{0-1}}
+**********************************************************
 
-</section>
+![Kollaboration im Editor](media/collaboration_1.png)<!-- style="width: 75%" --> 
+
+> Wer kollaboriert eigentlich mit wem? Lehrende mit Lehrenden, Lehrende mit Lernenden – oder sogar Lernende mit Lernenden. Alle können gemeinsam an Inhalten arbeiten, Feedback geben, Fragen stellen [vgl. TUBAF LiaScript-Kurse](https://github.com/TUBAF-IfI-LiaScript).
+
+> Was aber passiert in Fällen, wo Lernende keine Erfahrung beim Einsatz von Authoring-Tools haben? Hier gehen wir den Umweg über Annotationen in pdf-Dokumenten.
+
+    --{{1}}--
+Und jetzt wird's spannend: KI-Assistenten können direkt mitschreiben. Quizfragen generieren, Texte übersetzen, interaktive Elemente erstellen. Das ist echte Co-Creation – zwischen Menschen und zwischen Mensch und Maschine. Ohne Plattform-Lock-in.
+
+**********************************************************
+      {{1-2}}
+**********************************************************
+
+![Kollaboration mit der KI](media/collaboration_2.png) <!-- style="width: 75%" --> 
+
+> Probieren Sie es aus - bitten Sie Ihre KI einen LiaScript-Kurs zu erstellen. 
+
+```markdown
+Erstelle einen vollständigen LiaScript-Kurs zum Thema „Open Educational Resources (OER)“. Der Kurs soll sich
+an Studierende und Lehrende richten, die einen systematischen Einstieg suchen.
+
+Anforderungen:
+
+Format
++ Nutze strikt das LiaScript-Format (Markdown mit LiaScript-Erweiterungen).
++ Der Kurs soll in mehrere Kapitel gegliedert sein (mind. 5).
+
+Inhalte
++ Erkläre Grundlagen von OER, offene Lizenzen, CC-Lizenzen, Motivation, Vorteile, rechtliche Aspekte, 
+  Beispiele und Tools.
++ Füge ein Kapitel zu Open Science und Open Data hinzu, aber kurz.
+
+...
+```
+**********************************************************
 
 ## 7. Rolle des LMS – Ergänzung statt Konkurrenz 🧩
 
     --{{0}}--
-Wir sagen nicht: "Weg mit dem LMS!" Ein LMS ist wichtig für Nutzerverwaltung, Tracking und Zertifikate. Aber für die Inhaltserstellung? Da gibt es Besseres. LiaScript erzeugt SCORM-Pakete, die Sie direkt in Ihr LMS hochladen können. Oder Sie teilen den Link – der Kurs läuft dann direkt im Browser.
+Wir sagen nicht: "Weg mit dem LMS!" Ein LMS ist wichtig für Nutzerverwaltung, Tracking und Zertifikate. Aber für die Inhaltserstellung? Da gibt es Besseres. LiaScript erzeugt SCORM-Pakete, die Sie direkt in Ihr LMS hochladen können. Oder Sie teilen den Link – der Kurs läuft dann direkt im Browser. Das Beste aus beiden Welten: Die Verwaltung im LMS, die Inhalte offen und frei.
 
-![Kombination von LMS und LiaScript](media/combination_1.png)
+![Kombination von LMS und LiaScript](media/combination_1.png)<!-- style="width: 75%" --> 
 
-    --{{1}}--
-Das Beste aus beiden Welten: Die Verwaltung im LMS, die Inhalte offen und frei.
-
-      {{1}}
-![Kombination von LMS und LiaScript](media/combination_2.png)
-
-    --{{2}}--
-Und wenn das LMS irgendwann abgeschaltet wird – was leider oft passiert – sind Ihre Kurse nicht verloren. Sie liegen als Markdown-Dateien nicht zentral an einer Stelle, sondern verteilen sich Dank Git auf den Rechner der Autoren. Für immer zugänglich.
-
-      {{2}}
-![Adresse nicht gefunden](media/adresse-nicht-gefunden.png "Report: E-Learning: Eine Zwischenbilanz Kritischer Rückblick als Basis eines Aufbruchs -- 2009 -> [Download](https://www.pedocs.de/volltexte/2011/3215/pdf/Haug_Wedekind_Adresse_nicht_gefunden_D_A.pdf)")<!-- style="border: 1px solid black" -->
-
-      {{3}}
 In Sachsen wurde LiaScript in OPAL integriert, so dass die Kurse unmittelbar ohne SCORM-Import genutzt werden können.
 https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/28960423936/CourseNode/103166567950189?3
 
-## 8. OER-Ökosystem & Veröffentlichung 🌍
-
-
-**Plattformunabhängig**
-
-    --{{0}}--
-Leitfrage 6: Schnittstellen zu OER-Marktplätzen? Sie brauchen keine Schnittstelle – Sie können Ihre Kurse direkt veröffentlichen. Auf GitHub, wo sie über die GitHub-Topics gefunden werden. Auf GitLab, Nextcloud, Ihrer eigenen Website. Jeder Webserver kann LiaScript-Kurse hosten – es ist nur eine Markdown-Datei.
-
-- GitHub: https://github.com
-- GitLab: https://gitlab.com
-- Nextcloud: https://nextcloud.com
-- Eigener Webserver: https://example.com
-- Codeberg: https://codeberg.org
-- IPFS: https://ipfs.io
-- WebTorrent: https://webtorrent.io
-- Nostr: https://nostr.com
-- OnionShare: https://onionshare.org
-
-
-      {{1}}
-<section>
-
-**Exportformate:**
-
-    --{{1}}--
-Exportformate – Leitfrage 4: SCORM für Ihr LMS, PDF zum Ausdrucken, IMS Content Package für andere Systeme, oder als Standalone-WebApp – eine einzelne HTML-Datei mit allem drin. Einmal erstellen, überall nutzen.
+SCORM für Ihr LMS, PDF zum Ausdrucken, IMS Content Package für andere Systeme, oder als Standalone-WebApp – eine einzelne HTML-Datei mit allem drin. Einmal erstellen, überall nutzen.
 
 * SCORM 1.2 & 2004
 * PDF
 * IMS Content Package
 * Standalone HTML
 * APK: Android App
-
-https://github.com/liascript/liascript-exporter
-
-</section>
-
-    --{{2}}--
-Import? Leitfrage 5: Markdown kann jeder schreiben. Und es gibt Konverter von Word, LaTeX, HTML.
-
-## 9. Fazit 🌱
-
-    --{{0}}--
-Fassen wir zusammen: LiaScript ist ein offenes Authoring-Tool, das im Browser läuft. Keine Server, keine Plugins, keine Abhängigkeiten. Ihre Inhalte bleiben offen und versionsfähig. Sie können sie mit der ganzen Welt teilen – oder nur mit Ihren Studierenden. Sie funktionieren heute, morgen und in zehn Jahren.
-
-![Summary](media/summary.png)
-
-    --{{1}}--
-Das ist echte offene Bildung. Nicht in einer Datenbank eingesperrt, sondern frei teilbar. Probieren Sie es aus – es ist nur eine Textdatei. Mehr braucht es nicht.
-
-{{1}} https://liascript.github.io/LiveEditor
-
-    --{{2}}--
-Danke für Ihre Aufmerksamkeit. Alle Links und Beispiele finden Sie auf der nächsten Folie.
 
 
 ## 🧾 Mehr Informationen
@@ -482,3 +485,7 @@ Danke für Ihre Aufmerksamkeit. Alle Links und Beispiele finden Sie auf der näc
 * 📘 Dokumentation: [LiaScript Docs](https://liascript.github.io/course/?https://raw.githubusercontent.com/liaScript/docs/master/README.md)
 * 🧰 LiveEditor: [https://liascript.github.io/LiveEditor](https://liascript.github.io/LiveEditor)
 * 💡 Beispiele: [https://github.com/topics/liascript-course](https://github.com/topics/liascript-course)
+
+
+<!-- class="reference" -->
+> **Danke für Ihr Interesse! Wir freuen uns auf Ihre Fragen.**
